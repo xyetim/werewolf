@@ -38,7 +38,7 @@ $ bundle install --path=vendor/bundle
 
 setup your database config in config/database.yml
 
-default is `mysql -hlocalhost:3306 -uroot` (no pass)
+* default is `mysql -hlocalhost:3306 -uroot -p` (no pass)
 
 * Database migration
 
@@ -54,7 +54,15 @@ $ bundle exec rake db:seed
 ```
 $ cd {project_dir}
 $ bundle exec rails server
-(then access http://localhost:3000 using any browser)
+(then access http://yourhost:3000 using any browser)
+```
+
+* Start production programe
+
+```
+$ cd {project_dir}
+$ bundle exec rails server
+(then access http://yourhost using any browser)
 ```
 
 ### Audio
