@@ -55,7 +55,7 @@ $ bundle install --path=vendor/bundle
 
 setup your database config in config/database.yml
 
-* default is `mysql -hlocalhost:3306 -uroot -p` (no pass)
+* default is `mysql -hlocalhost -P3306 -uroot -p` (no pass)
 
 * Database migration
 
