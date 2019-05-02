@@ -18,11 +18,28 @@ $ rails -v
 Rails 5.0.7
 ```
 
+- Gem
+
+```
+$ gem -v
+Gem 2.6.14
+
 - Bundler
 
 ```
 $ bundle -v
 Bundler version 2.0.1
+```
+------------------------------------------------------
+* 1.modify file if {project_dir}/Gemfile in this line:
+  # gem 'therubyracer', platforms: :ruby
+* to
+  gem 'therubyracer', platforms: :ruby  
+* 2.and run:
+  $ bundle install
+* or direct run command whitout 1 and 2:
+  $ gem install therubyracer
+------------------------------------------------------
 ```
 
 ### Setup
@@ -53,7 +70,7 @@ $ bundle exec rake db:seed
 
 ```
 $ cd {project_dir}
-$ bundle exec rails server
+$ bundle exec rails server -b 0.0.0.0
 (then access http://yourhost:3000 using any browser)
 ```
 
@@ -61,7 +78,7 @@ $ bundle exec rails server
 
 ```
 $ cd {project_dir}
-$ bundle exec rails server
+$ bundle exec rails server -b 0.0.0.0 -p 80 -e production
 (then access http://yourhost using any browser)
 ```
 
