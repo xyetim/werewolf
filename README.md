@@ -61,9 +61,9 @@ setup your database config in config/database.yml
 
 ```
 $ cd {project_dir}
-$ bundle exec rake db:create
-$ bundle exec rake db:migrate
-$ bundle exec rake db:seed
+$ bundle exec rake db:create RAILS_ENV=production
+$ bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake db:seed RAILS_ENV=production
 ```
 
 * Start development programe
@@ -78,7 +78,7 @@ $ bundle exec rails server -b 0.0.0.0
 
 ```
 $ cd {project_dir}
-$ bundle exec rails server -b 0.0.0.0 -p 80 -e production
+$ bundle exec rails server -b 0.0.0.0 -p 3000 -e production
 (then access http://yourhost using any browser)
 ```
 
