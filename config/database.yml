@@ -21,7 +21,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: wolf_test
+  database: wolf_dev
 
 production:
   <<: *default
