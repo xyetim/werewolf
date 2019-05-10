@@ -1,28 +1,32 @@
-# Werewolf
+# 狼人杀
 
-## Development setup
+狼人杀面杀自动语音法官机器人
 
-### Environment configure
+该程序仅为线下朋友游戏提供自动法官。目前不支持多房间游戏等功能。
+
+基础环境检验,如未安装Ruby,建议新手先安装rvm或rbenv等Ruby管理工具再进行环境部署,可以减少入坑次数，老司机请飘过
+```
 
 - Ruby
 
 ```
 $ ruby -v
-ruby 2.3.3p222
+ruby version 2.3.3p222
  ```
-
-- Rails
-
-```
-$ rails -v
-Rails 5.0.7
-```
 
 - Gem
 
 ```
 $ gem -v
-Gem 2.6.14
+Gem version 2.6.14
+```
+
+- Rails
+
+```
+$ rails -v
+Rails version 5.0.7
+```
 
 - Bundler
 
@@ -31,64 +35,67 @@ $ bundle -v
 Bundler version 2.0.1
 ```
 ------------------------------------------------------
-* 1.modify file if {project_dir}/Gemfile in this line:
-  # gem 'therubyracer', platforms: :ruby
-* to
-  gem 'therubyracer', platforms: :ruby  
-* 2.and run:
+* 1.如果 /{项目路径}/Gemfile 文件内某一行有如下行内容:
+    '# gem 'therubyracer', platforms: :ruby'
+* 则修改为(去掉'#')：
+    '  gem 'therubyracer', platforms: :ruby'  
+* 2.然后终端执行命令,自动安装依赖与缺少的模块:
   $ bundle install
-* or direct run command whitout 1 and 2:
+* 或者跳过步骤1和2,直接在终端执行以下命令:
   $ gem install therubyracer
 ------------------------------------------------------
 ```
 
-### Setup
+### 安装
 
-- Provision
+- 初始化
 
 ```
-$ cd {project_dir}
+$ cd /{项目路径}/
 $ bundle install --path=vendor/bundle
 ```
 
-- Database
+- 数据库
 
-setup your database config in config/database.yml
+按你数据库的设置填写 /{项目路径}/config/database.yml
 
-* default is `mysql -hlocalhost -P3306 -uroot -p` (no pass)
+* 例如 mysql 当前设置在终端能成功连接的命令为： `mysql -hlocalhost -P3306 -uroot -p` (密码为空)
+* database.yml
 
-* Database migration
 
-```
-$ cd {project_dir}
-$ bundle exec rake db:create RAILS_ENV=production
-$ bundle exec rake db:migrate RAILS_ENV=production
-$ bundle exec rake db:seed RAILS_ENV=production
-```
-
-* Start development programe
+* 数据库迁移
 
 ```
-$ cd {project_dir}
-$ bundle exec rails server -b 0.0.0.0
-(then access http://yourhost:3000 using any browser)
+$ cd /{项目路径}/
+$ bundle exec rake db:create RAILS_ENV=production   *# ||  RACK_ENV=production   ||  PUMA_ENV=production   ||  RAKE_ENV=production # 创建对应环境的数据库
+$ bundle exec rake db:migrate RAILS_ENV=production  *# ||  RACK_ENV=production   ||  PUMA_ENV=production   ||  RAKE_ENV=production # 执行迁移数据库
+$ bundle exec rake db:seed RAILS_ENV=production     *# ||  RACK_ENV=production   ||  PUMA_ENV=production   ||  RAKE_ENV=production # 运行 /{项目路径}/db/seeds.rb 数据库脚本
 ```
 
-* Start production programe
+* 启动开发版程序
 
 ```
-$ cd {project_dir}
-$ bundle exec rails server -b 0.0.0.0 -p 3000 -e production
-(then access http://yourhost using any browser)
+$ cd /{项目路径}/
+$ bundle exec rails server -b 0.0.0.0 -p 3000 (-b=-bind,绑定用于访问的主机IP)
+(用任意浏览器访问 http://{主机IP}:3000)
 ```
 
-### Audio
+* 启动正式版程序
+
+```
+$ cd /{项目路径}/
+$ bundle exec rails server -b 0.0.0.0 -p 3000 -e production (-e=-environment,三种环境名称选其一 test || development || production)
+(用任意浏览器访问 http://{主机IP}:3000)
+```
+
+### 语音发声
 
 https://ai.baidu.com/tech/speech/tts
 
-普通女生，语速4，语调4
+普通女生，语速4，语调4 
+* 度逍遥(情感男声) 发音咬字较前者更清晰
 
-### Roles
+### 游戏规则
 
 名称|含义|技能|描述
 :--:|:--:|:--:|:--
@@ -112,4 +119,6 @@ seer|预言家|Check|验阵营
 villager|普通村民|-|-
 witch|女巫|Prescribe|不可一夜双药
 wolf|狼人基类|Kill|-
+想要游戏的朋友可以自行下载代码部署后进行游戏。
 
+更多详情, 请看 `/documents`
